@@ -1,0 +1,19 @@
+{
+    "name": "Enable right click",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "icons": {
+        "48": "img/icon48.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js" : [
+                "src/content_scripts.js"
+            ]
+        }
+    ],
+    "web_accessible_resources" : [
+        "/web_accessible_resources/index.js"
+    ]
+}
