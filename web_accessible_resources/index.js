@@ -16,7 +16,7 @@
         });
     }
     function createConfirm () {
-        document.body.insertAdjacentHTML('BeforeEnd', '<div style="position: absolute; top: 0; right: 0; border: solid #555 2px; margin: 3px; padding: 3px; background: rgba(200,200,200,0.6);"><label>' + chrome.i18n.getMessage('enable_contextmenu') + '<input type="checkbox"></label></div>');
+        document.body.insertAdjacentHTML('BeforeEnd', '<div style="position: absolute; top: 0; right: 0; border: solid #555 2px; margin: 3px; padding: 3px; background: rgba(200,200,200,0.6);"><label>Enable contextmenu<input type="checkbox"></label></div>');
         document.body.lastChild.querySelector('input').addEventListener('change', toggleContextmenu);
     }
     function toggleContextmenu () {
