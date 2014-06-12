@@ -2,10 +2,12 @@
     window.addEventListener('contextmenu', handleEvent, true);
     function handleEvent (event) {
         event.stopPropagation();
-        window.removeEventListener(event.type, handleEvent, true);
-        fileEvent(event.type, event);
-        fileEvent('mouseup', event);
-        window.addEventListener(event.type, handleEvent, true);
+        setTimeout(function () {
+            window.removeEventListener(event.type, handleEvent, true);
+            fileEvent(event.type, event);
+            fileEvent('mouseup', event);
+            window.addEventListener(event.type, handleEvent, true);
+        });
     }
     function fileEvent (type, event) {
         var target = event.target;
