@@ -54,29 +54,38 @@
 
     function EventHandler (event) {
         this.event = event;
-        this.event.stopPropagation();
-        this.event.stopImmediatePropagation();
-        this.createEvent();
-        this.isCanceled = this.newEvent.defaultPrevented;
+        this.contextmenuEvent = this.createEvent(this.event.type);
+        this.mouseupEvent = this.createEvent('mouseup');
+        this.isCanceled = this.contextmenuEvent.defaultPrevented;
     }
-    EventHandler.prototype.createEvent = function () {
+    EventHandler.prototype.createEvent = function (type) {
         var target = this.event.target;
-        this.newEvent = target.ownerDocument.createEvent('MouseEvents');
-        this.newEvent.initMouseEvent(this.event.type, this.event.bubbles, this.event.cancelable,
+        var event = target.ownerDocument.createEvent('MouseEvents');
+        event.initMouseEvent(type, this.event.bubbles, this.event.cancelable,
             target.ownerDocument.defaultView, this.event.detail,
             this.event.screenX, this.event.screenY, this.event.clientX, this.event.clientY,
             this.event.ctrlKey, this.event.altKey, this.event.shiftKey, this.event.metaKey,
             this.event.button, this.event.relatedTarget
         );
+        return event;
     };
     EventHandler.prototype.fire = function () {
         var target = this.event.target;
-        target.dispatchEvent(this.newEvent);
-        this.isCanceled = this.newEvent.defaultPrevented;
+        var contextmenuHandler = function (event) {
+            this.isCanceled = event.defaultPrevented;
+            event.preventDefault();
+        }.bind(this);
+        window.addEventListener(this.event.type, contextmenuHandler, false);
+        target.dispatchEvent(this.contextmenuEvent);
+        window.removeEventListener(this.event.type, contextmenuHandler, false);
+        this.isCanceled = this.contextmenuEvent.defaultPrevented;
+        target.dispatchEvent(this.mouseupEvent);
     };
 
     window.addEventListener('contextmenu', handleEvent, true);
     function handleEvent (event) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
         var handler = new EventHandler(event);
 
         window.removeEventListener(event.type, handleEvent, true);

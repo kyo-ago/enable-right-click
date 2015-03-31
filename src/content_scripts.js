@@ -1,5 +1,5 @@
 (function () {
-    if ((/\.google\.com$/i).test(location.host)) {
+    if ((/(\.google\.com|\.live\.com)$/i).test(location.host)) {
         return;
     }
     var scp = document.createElement('script');
