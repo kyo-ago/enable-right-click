@@ -94,7 +94,10 @@
             sync.restore();
         });
 
+        var _alert = window.alert;
+        window.alert = function () {};
         handler.fire();
+        window.alert = _alert;
 
         sync.restore();
         mutation.unbind();
