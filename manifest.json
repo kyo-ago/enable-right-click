@@ -8,8 +8,18 @@
     },
     "browser_action": {
         "default_title": "Disable right click",
-        "default_icon": "img/icon128.png",
-        "default_popup": "src/popup.html"
+        "default_icon": "img/icon128.png"
+    },
+    "options_ui": {
+        "page": "src/options.html",
+        "chrome_style": true
+    },
+    "background": {
+        "scripts": [
+            "src/DisableSettings.js",
+            "src/background.js"
+        ],
+        "persistent": false
     },
     "content_scripts": [
         {
@@ -21,7 +31,9 @@
         }
     ],
     "permissions": [
-        "storage"
+        "<all_urls>",
+        "storage",
+        "tabs"
     ],
     "web_accessible_resources" : [
         "/web_accessible_resources/index.js"

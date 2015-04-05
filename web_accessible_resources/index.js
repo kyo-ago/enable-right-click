@@ -84,6 +84,10 @@
 
     window.addEventListener('contextmenu', handleEvent, true);
     function handleEvent (event) {
+        if (window.disableRightClick) {
+            return;
+        }
+
         event.stopPropagation();
         event.stopImmediatePropagation();
         var handler = new EventHandler(event);

@@ -2,19 +2,20 @@
 <html ng-cloak ng-csp ng-app="EnableClickApp">
 <head>
 <link rel="stylesheet" href="lib/angular-csp.css" />
-<title>popup</title>
+<title>options</title>
 </head>
 <body>
 <div ng-controller="EnableClick">
   <ul>
     <li ng-repeat="setting in disableSettings">
-      <input type="text" ng-model="setting.url" ng-change="change(setting)">
+      <input type="text" ng-model="setting" ng-change="change(setting)">
       <input type="submit" ng-click="delete(setting)" value="del">
     </li>
   </ul>
   <input type="submit" ng-click="add()" value="add">
 </div>
 <script src="lib/angular.js"></script>
-<script src="popup.js"></script>
+<script src="DisableSettings.js"></script>
+<script src="options.js"></script>
 </body>
 </html>
