@@ -55,6 +55,7 @@ disableSettingsRepository.get().then(function (disableSettings) {
         var url = new URL(tab.url);
         if (disableSettings.contains(url.host)) {
             chrome.browserAction.setBadgeText({
+                'tabId': tab.id,
                 'text': 'Disable'
             });
             chrome.tabs.executeScript(tab.id, {
@@ -63,6 +64,7 @@ disableSettingsRepository.get().then(function (disableSettings) {
             });
         } else {
             chrome.browserAction.setBadgeText({
+                'tabId': tab.id,
                 'text': ''
             });
             chrome.tabs.executeScript(tab.id, {

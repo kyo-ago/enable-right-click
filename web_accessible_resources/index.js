@@ -8,7 +8,7 @@
     }
     Mutation.prototype.bind = function () {
         this.events.forEach(function (name) {
-            document.body.addEventListener(name, this, true);
+            document.addEventListener(name, this, true);
         }.bind(this));
     };
     Mutation.prototype.handleEvent = function () {
@@ -20,7 +20,7 @@
             return;
         }
         this.events.forEach(function (name) {
-            document.body.removeEventListener(name, this, true);
+            document.removeEventListener(name, this, true);
         }.bind(this));
         this.isUnbound = true;
     };

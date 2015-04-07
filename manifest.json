@@ -1,6 +1,6 @@
 {
     "name": "Enable right click",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "manifest_version": 2,
     "default_locale": "en",
     "icons": {
