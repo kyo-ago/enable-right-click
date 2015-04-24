@@ -46,7 +46,7 @@
         }
         window.setTimeout = this._setTimeout;
         window.requestAnimationFrame = this._requestAnimationFrame;
-        if (this.calledPromise) {
+        if (!this.calledPromise) {
             window.Promise = this._Promise;
         }
         this.isRestoration = true;
