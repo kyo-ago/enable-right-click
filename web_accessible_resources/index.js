@@ -82,9 +82,19 @@
         target.dispatchEvent(this.mouseupEvent);
     };
 
+    var disableRightClick = false;
+    window.addEventListener('message', function (event) {
+        if (event.data.type !== 'enable-right-click') {
+            return;
+        }
+        disableRightClick = !!event.data.disableRightClick;
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+    }, true);
+
     window.addEventListener('contextmenu', handleEvent, true);
     function handleEvent (event) {
-        if (window.disableRightClick) {
+        if (disableRightClick) {
             return;
         }
 

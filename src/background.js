@@ -59,7 +59,7 @@ disableSettingsRepository.get().then(function (disableSettings) {
                 'text': 'Disable'
             });
             chrome.tabs.executeScript(tab.id, {
-                'code': 'window.executeScript && window.executeScript("window.disableRightClick = true;");',
+                'code': 'window.postWebAccessibleResourceMessage && window.postWebAccessibleResourceMessage(true);',
                 'allFrames' : true
             });
         } else {
@@ -68,7 +68,7 @@ disableSettingsRepository.get().then(function (disableSettings) {
                 'text': ''
             });
             chrome.tabs.executeScript(tab.id, {
-                'code': 'window.executeScript && window.executeScript("window.disableRightClick = false;");',
+                'code': 'window.postWebAccessibleResourceMessage && window.postWebAccessibleResourceMessage(false);',
                 'allFrames' : true
             });
         }
