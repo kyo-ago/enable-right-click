@@ -6,13 +6,12 @@ var enableClickApp = angular.module('EnableClickApp', []).controller('EnableClic
         $scope.$apply();
     }).catch(console.error.bind(console));
 
-    $scope.delete = function (target) {
-        $scope.disableSettings = $scope.disableSettings.filter(function (current) {
-            return target !== current;
-        });
+    $scope.delete = function (index) {
+        $scope.disableSettings.splice(index, 1);
         save();
     };
-    $scope.change = function (target) {
+    $scope.change = function (index, target) {
+        $scope.disableSettings[index] = target;
         save();
     };
     $scope.add = function (target) {

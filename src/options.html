@@ -7,9 +7,9 @@
 <body>
 <div ng-controller="EnableClick">
   <ul>
-    <li ng-repeat="setting in disableSettings">
-      <input type="text" ng-model="setting" ng-change="change(setting)">
-      <input type="submit" ng-click="delete(setting)" value="del">
+    <li ng-repeat="setting in disableSettings track by $index">
+      <input type="text" ng-model="setting" ng-change="change($index, setting)">
+      <input type="submit" ng-click="delete($index)" value="del">
     </li>
   </ul>
   <input type="submit" ng-click="add()" value="add">

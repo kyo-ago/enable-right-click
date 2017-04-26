@@ -1,5 +1,10 @@
 var disableSettingsRepository = new DisableSettingsRepository();
 disableSettingsRepository.get().then(function (disableSettings) {
+    chrome.storage.onChanged.addListener(() => {
+        disableSettingsRepository.get().then((newDisableSettings) => {
+            disableSettings = newDisableSettings;
+        });
+    });
     chrome.browserAction.onClicked.addListener(function (tab) {
         isActiveTab(tab.id).then(function (tab) {
             if (!tab) {
@@ -53,7 +58,7 @@ disableSettingsRepository.get().then(function (disableSettings) {
             return;
         }
         var url = new URL(tab.url);
-        if (disableSettings.contains(url.host)) {
+        if (disableSettings.contains(url.href)) {
             chrome.browserAction.setBadgeText({
                 'tabId': tab.id,
                 'text': 'Disable'

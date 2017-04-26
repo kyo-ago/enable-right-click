@@ -84,7 +84,7 @@
 
     var disableRightClick = false;
     window.addEventListener('message', function (event) {
-        if (event.data.type !== 'enable-right-click') {
+        if (!event.data || event.data.type !== 'enable-right-click') {
             return;
         }
         disableRightClick = !!event.data.disableRightClick;
